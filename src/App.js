@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
 
 function App() {
+  const [image, setImage] = useState("");
+
+  //traer data de una API
+  async function fetchData() {
+    const getData = await fetch("https://api.thecatapi.com/v1/images/search");
+    const getJson = await getData.json();
+    //llaman al useState aqui
+    console.log(getJson);
+    setImage(getJson[0].url);
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <img src={image} alt="gatito random" width="400" />
+    </>
   );
 }
 
