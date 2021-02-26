@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 
+//FORMA LLAMANDO TODO EL OBJETO
 function App() {
   const [data, setData] = useState({});
 
@@ -19,6 +20,7 @@ function App() {
   return (
     <>
       <p>Login: {data.login}</p>
+      <img src={data.avatar_url} />
     </>
   );
 }
