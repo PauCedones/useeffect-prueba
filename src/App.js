@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 
+//GUARDANDO SOLO EL STRING A UTILIZAR
+//En esta forma de hacerlo guardas
+//solo la data en getJson que necesitas
+
 function App() {
-  const [data, setData] = useState({});
+  const [login, setLogin] = useState("");
+  const [avatar, setAvatar] = useState("");
 
   //traer data de una API
   async function fetchData() {
@@ -9,7 +14,8 @@ function App() {
     const getJson = await getData.json();
     //llaman al useState aqui
     console.log(getJson);
-    setData(getJson);
+    setLogin(getJson.login);
+    setAvatar(getJson.avatar_url);
   }
 
   useEffect(() => {
@@ -18,7 +24,8 @@ function App() {
 
   return (
     <>
-      <p>Login: {data.login}</p>
+      <p>Login: {login}</p>
+      <img src={avatar} width="200" />
     </>
   );
 }
